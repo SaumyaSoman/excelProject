@@ -1,19 +1,17 @@
-#ifndef CELL_CPP
-#define CELL_CPP
-
 #include "cell.h"
 
-Cell::Cell(){ 
-	val = std::numeric_limits < double >::quiet_NaN();
-};
+std::string Cell::toString() {
+	return "";
+}
 
-//copy constructor and assignment operator
-Cell::Cell(Cell& other){}
-//Cell& Cell::operator=(Cell& other){}
+std::string NumberCell::toString() {
+	return "Number Cell";
+}
 
-std::string Cell::toString(){ return " "; }
+std::string StringCell::toString() {
+	return "String Cell";
+}
 
-Cell::~Cell(){};
-
-
-#endif
+std::string FunctionCell::toString() {
+	return "Function Cell";
+}

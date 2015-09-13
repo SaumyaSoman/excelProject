@@ -17,6 +17,7 @@ protected:
 	Node<T>* head;
 	Node<T>* tail;
 
+
 public:
 
 	LList() {

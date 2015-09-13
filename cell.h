@@ -1,65 +1,32 @@
 /*
-* Header file for Cell
-*
+* Header file for cell
 * @author Saumya Soman
 */
-
-#ifndef CELL_H
-#define CELL_H
-
-#include <vector>
 #include <string>
-#include <typeinfo>
-#include <iostream>
-#include "LList.cpp"
-#include <limits>
 
-using namespace std;
 //Abstract class for Cell
 class Cell {
-	double val;
 public:
-	Cell();
-	Cell(Cell& other);
-	//Cell& operator=(Cell& other);
-	~Cell();
-	// String representation of data in this cell
 	virtual std::string toString();
-	//virtual void setValueDirect();
-	virtual double getValue() { return val; }
 };
 
-//Numeric Cell
-class NumericCell : public Cell{
+//Class for Number Cell
+class NumberCell :public Cell {
+public:
 	double val;
-	//LList<NumericCell*> listFunction;
-	vector< pair <NumericCell*, pair<int, int> > >  listFunction;
-
-public:
-
-	NumericCell();
-	NumericCell(double value);
-	NumericCell(NumericCell& other);
-
-	void setValueDirect(double value);
-	virtual double getValue();
-
-	int searchFunctionList(pair<int,int>);
-	void updateComponentList(pair <NumericCell*, pair<int, int> >);
 	std::string toString();
-	void NumericCell::printListFunction();
-	~NumericCell();
 };
 
-//String Cell
+//Class for String Cell
 class StringCell :public Cell {
-	string val;
-
 public:
-	StringCell();
-	StringCell(string value);
+	std::string val;
 	std::string toString();
-	~StringCell();
 };
 
-#endif
+//Class for Function Cell
+class FunctionCell :public NumberCell {
+public:
+	std::string functionName;
+	std::string toString();
+};

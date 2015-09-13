@@ -11,8 +11,9 @@ Course Project - Text based Implementation of Spreadsheet (C++11)
 // String has std :: getline and std :: string
 #include <string>
 #include "list.h"
+#include "cell.h"
 
-
+void print(LList<LList<Cell*>> sheet);
 
 int main(int argc, char* argv[]) {
 
@@ -41,7 +42,18 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	LList<LList<double>> sheet;
+	LList<LList<Cell*>> sheet;
+	int rows = height;
+	int cols = width;
+
+	for (int i = 0; i < rows; i++) {
+		LList<Cell*> row;
+		for (int j = 0; j < cols; j++) {
+			Cell* cell;
+			row.push_back(cell);
+		}
+		sheet.push_back(row);
+	}
 
 	// Read in the entire input line
 	std::string line;
@@ -52,8 +64,39 @@ int main(int argc, char* argv[]) {
 		ss >> command;
 		
 		// Process the command
+		if (command.compare("print")==0) {
+			print(sheet);
+		}
+		else if (command.compare("addrow")==0) {
+
+		}
+		else if (command.compare("removerow")==0) {
+
+		}
+		else if (command.compare("set") == 0) {
+
+		}
+		else if (command.compare("quit") == 0) {
+
+		}
+		else {
+			std::cout << "Error: unknown command";
+		}
 
 	}
 	
 	return 0;
+}
+
+void print(LList<LList<Cell*>> sheet) {
+
+	/*
+	for (int i = 0; i < sheet.getLength(); i++) {
+		LList<Cell*> row = sheet
+		for (int j = 0; j < cols; j++) {
+			Cell* cell;
+			row.push_back(cell);
+		}
+		sheet.push_back(row);
+	}
 }
