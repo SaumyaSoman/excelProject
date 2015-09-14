@@ -13,7 +13,23 @@ Course Project - Text based Implementation of Spreadsheet (C++11)
 #include "list.h"
 #include "cell.h"
 
-void print(LList<LList<Cell*>> sheet);
+template <typename iterator>
+void print(iterator begin, iterator end) {
+
+	
+	for (iterator I= begin; I!=end; ++I) {
+		LList<Cell*> row = *I;
+		/*for (iterator J = row.begin(); J != row.end(); ++J) {
+			Cell* cell = *J;
+			std::string val = cell.toString();
+			std::cout << val;
+			if (J != row.end()) {
+				std::cout << ",\t";
+			}
+		}*/
+		std::cout << "\n";
+	}	
+}
 
 int main(int argc, char* argv[]) {
 
@@ -65,7 +81,7 @@ int main(int argc, char* argv[]) {
 		
 		// Process the command
 		if (command.compare("print")==0) {
-			print(sheet);
+			print(sheet.begin(), sheet.end());
 		}
 		else if (command.compare("addrow")==0) {
 
@@ -88,15 +104,3 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-void print(LList<LList<Cell*>> sheet) {
-
-	/*
-	for (int i = 0; i < sheet.getLength(); i++) {
-		LList<Cell*> row = sheet
-		for (int j = 0; j < cols; j++) {
-			Cell* cell;
-			row.push_back(cell);
-		}
-		sheet.push_back(row);
-	}
-}

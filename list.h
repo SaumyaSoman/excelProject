@@ -25,6 +25,12 @@ public:
 		tail = nullptr;
 	}
 
+	LList(const LList& other) {
+		if (head == nullptr) {
+			*this = other;
+		}
+	}
+
 	~LList() {
 		//Keep deleting the second node until there is only one node (the head)
 		while (nullptr != head->getNext()) {
@@ -68,6 +74,12 @@ public:
 		}
 	}
 
+	//Overloading = operator for the copy constructor
+	void operator=(const LList& other){
+		for (iterator I = other.begin(); I != other.end(); ++I) {
+			this.pushback(*I);
+		}
+	}
 	//friend class iterator;
 	//Iterator class for the linked list
 	class iterator {
