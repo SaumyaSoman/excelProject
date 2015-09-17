@@ -16,19 +16,20 @@ Course Project - Text based Implementation of Spreadsheet (C++11)
 template <typename iterator>
 void print(iterator begin, iterator end) {
 
-	
+	std::cout << "Entered print loop\n";
+	/*
 	for (iterator I= begin; I!=end; ++I) {
 		LList<Cell*> row = *I;
-		/*for (iterator J = row.begin(); J != row.end(); ++J) {
+		for (iterator J = row.begin(); J != row.end(); ++J) {
 			Cell* cell = *J;
 			std::string val = cell.toString();
 			std::cout << val;
 			if (J != row.end()) {
 				std::cout << ",\t";
 			}
-		}*/
+		}
 		std::cout << "\n";
-	}	
+	}*/
 }
 
 int main(int argc, char* argv[]) {
@@ -57,15 +58,15 @@ int main(int argc, char* argv[]) {
 		std::cout << "Enter positive values for width and height!\n";
 		return 1;
 	}
-
+	
 	LList<LList<Cell*>> sheet;
 	int rows = height;
 	int cols = width;
-
+	
 	for (int i = 0; i < rows; i++) {
 		LList<Cell*> row;
 		for (int j = 0; j < cols; j++) {
-			Cell* cell;
+			Cell* cell=new Cell();
 			row.push_back(cell);
 		}
 		sheet.push_back(row);
@@ -96,7 +97,7 @@ int main(int argc, char* argv[]) {
 
 		}
 		else {
-			std::cout << "Error: unknown command";
+			std::cout << "Error: unknown command\n";
 		}
 
 	}

@@ -24,11 +24,36 @@ public:
 		head = nullptr;
 		tail = nullptr;
 	}
+	
+	 LList(const LList& other) {
 
-	LList(const LList& other) {
-		if (head == nullptr) {
-			*this = other;
-		}
+		 std::cout << "Inside copy constructor\n";
+		 Node<T>* orig = nullptr;
+		 Node<T>* copy = nullptr;
+		 if (other.head == nullptr) {
+			 head = nullptr;
+			 std::cout << "Inside if loop\n";
+		 }
+		 else {
+			 head = new Node<T>();
+			 head->setVal(other.head->getVal());
+			 head->setPrev(other.head->getPrev());
+			 head->setNext(other.head->getNext());
+			 orig = head;
+			 copy = other.head->getNext();
+			 std::cout << "Inside else loop\n";
+		 }
+
+		 while (copy) {
+			 std::cout << "Inside while loop\n";
+			 Node<T>* temp = new Node<T>();
+			 temp->setVal(copy->getVal());
+			 temp->setPrev(copy->getPrev());
+			 temp->setNext(copy->getNext());
+			 orig->insert(temp);
+			 copy = copy->getNext();
+		 }
+		
 	}
 
 	~LList() {
@@ -73,13 +98,18 @@ public:
 			head = n;
 		}
 	}
-
+	
 	//Overloading = operator for the copy constructor
-	void operator=(const LList& other){
-		for (iterator I = other.begin(); I != other.end(); ++I) {
-			this.pushback(*I);
-		}
+
+	LList& operator=(const LList& other){
+		std::cout << "Inside list assign\n";
+		head = other.head;
+		tail = other.tail;
+		return *this;
+
 	}
+
+
 	//friend class iterator;
 	//Iterator class for the linked list
 	class iterator {
@@ -90,6 +120,7 @@ public:
 		//Remember the kind of thing this iterator will fetch with operator*
 		typedef T value_type;
 
+	
 		//The iterator starts at some node
 		iterator(Node<T>* start, LList* container) {
 			location = start;
@@ -138,6 +169,7 @@ public:
 			}
 			return location != other.location;
 		}
+
 	};
 
 	//begin and end iterator functions

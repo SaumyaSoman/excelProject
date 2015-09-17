@@ -15,14 +15,34 @@ private:
 	//The value being held
 	T val;
 	//Pointers to the next and previous nodes
-	Node* next;
-	Node* prev;
+	Node<T>* next;
+	Node<T>* prev;
 public:
 	//Constructor
+	Node() {
+		next = nullptr;
+		prev = nullptr;
+	}
+
 	Node(T val) {
 		Node::val = val;
 		next = nullptr;
 		prev = nullptr;
+	}
+	
+	Node(const Node& other) {
+		std::cout << "Inside node copy\n";
+		val = other.val;
+		next = other.next;
+		prev = other.prev;
+	}
+
+	Node& operator=(const Node& other) {
+		std::cout << "Inside node assign\n";
+		val = other.val;
+		next = other.next;
+		prev = other.prev;
+		return *this;
 	}
 
 	//Return a reference to the value
@@ -56,6 +76,17 @@ public:
 
 	Node* getNext() {
 		return next;
+	}
+
+	void setNext(Node * next) {
+		Node::next = next;
+	}
+	void setPrev(Node* prev) {
+		Node::prev = prev;
+	}
+
+	void setVal(T val) {
+		Node::val = val;
 	}
 
 	~Node() {

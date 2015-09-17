@@ -6,21 +6,25 @@
 
 //Abstract class for Cell
 class Cell {
-public:
-	virtual std::string toString();
+private:
+	std::string val = "";
+public:	
+	Cell();
+	Cell(const Cell& other);
+	~Cell();
+	std::string toString();
 };
 
 //Class for Number Cell
 class NumberCell :public Cell {
 public:
-	double val;
+	double val=0.0;
 	std::string toString();
 };
 
 //Class for String Cell
 class StringCell :public Cell {
 public:
-	std::string val;
 	std::string toString();
 };
 
